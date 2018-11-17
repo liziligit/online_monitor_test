@@ -139,7 +139,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 
 		for(int i=0;i<pd1.nFrame();i++)
 		{
-			cout<<i<<endl;
+			//cout<<i<<endl;
 			pd1.getFrame(i, 0); // 输入帧数和adc通道数，不加adc通道数这个参数，会获取所有通道的数据
 			//sprintf(str, "frame %d", i);
 			sprintf(str, "beam_%d.pd1 frame %d",fileId,i);
@@ -164,7 +164,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 				// if(ch==38) break;				
 				if(ch==32)
 				{
-					cout << "请输入1000内的正负数字前后跳相应帧,-1000跳到上一个文件,1000跳到下一文件,0则继续" << endl;
+					wait_opera: cout << "请输入正负1000内的数字前后跳帧,-1000跳到上个pd1,1000跳到下个pd1,5000截图,0继续" << endl;
 					scanf("%d", &Key_input);
 					if( Key_input == 0 )
 					{
@@ -201,11 +201,18 @@ change_pd1: for(int j=0;j<idList.size();j++)
 						//cout << "1XXXXXX j+1=" <<j+1 << endl;
 						goto change_pd1;
 					}
-					//end of change files	
+					//end of change files
+					//for saving frame png	
+					else if(Key_input == 5000)
+					{
+						pt.c->SaveAs(TString::Format("../data/runData/cut_%d_%d.png",fileId,i));
+						goto wait_opera;
+					}
+					//end for saving frame png	
 					else
 					{	
 						change_frame: i = i + Key_input;
-						cout<<i<<endl;
+						//cout<<i<<endl;
 						pd1.getFrame(i, 0); // 输入帧数和adc通道数，不加adc通道数这个参数，会获取所有通道的数据
 						//sprintf(str, "frame %d",i);
 						sprintf(str, "xbeam_%d.pd1 frame %d",fileId,i);
@@ -254,7 +261,14 @@ change_pd1: for(int j=0;j<idList.size();j++)
 						//cout << "2XXXXXX j+1=" <<j+1 << endl;
 						goto change_pd1;
 						}
-						//end of change files	
+						//end of change files
+						//for saving frame png	
+						else if(Key_input == 5000)
+						{
+						pt.c->SaveAs(TString::Format("../data/runData/cut_%d_%d.png",fileId,i));
+						goto wait_opera;
+						}
+						//end for saving frame png	
 						else goto change_frame;
 						//cout << n <<endl;
 					}//if( Key_input != 0 )			    		
@@ -272,6 +286,43 @@ change_pd1: for(int j=0;j<idList.size();j++)
 			*/
 		} //for(int i=0;i<pd1.nFrame();i++)
 		cout<<"end"<<endl;	
+
+	/////begin of refresh dir
+	name_id.clear();
+	idList.clear();
+	dir = opendir(beamfn); //打开一个目录
+
+	cout << pedefn << endl;
+	cout << beamfn << "xbeam_*.pd1"<<endl;
+
+    while((ptr = readdir(dir)) != NULL) //循环读取目录数据
+    {
+    name_id.push_back(ptr->d_name);
+    }
+	closedir(dir);//关闭目录指针
+
+    for(int j=0;j<name_id.size();j++)
+  {
+    //cout << name_id[j] << endl;
+    int eId=extractId(name_id[j],"xbeam_",".pd1");
+
+    if(eId>=0)
+    {
+    idList.push_back(eId);
+    //point2name_id.push_back(j);
+    }
+  }
+
+    //sort number into list point to name_id 
+    //sort is not necessary if id is already  in order
+    for(int j=0;j<idList.size();j++)
+    {
+    //cout << idList[j] << endl;
+    cout << idList[j] << ' ';
+    }
+    cout << "" <<endl;
+	/////end of begin of refresh dir
+
 	} //if(fileId <= idList[j])
   }  //for(int j=0;j<idList.size();j++)
 
