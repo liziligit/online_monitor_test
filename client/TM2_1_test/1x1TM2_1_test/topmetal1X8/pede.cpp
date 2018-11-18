@@ -14,7 +14,7 @@ int pede(const char *path,const char *InName,int dataID){
 	char Input[200];
 	char Output[200];
 	sprintf(Input,"%s/%s%d.pd1",path,InName,dataID);
-	sprintf(Output,"%s/%s%d",path,InName,dataID);
+	sprintf(Output,"%s/%s%d.txt",path,InName,dataID);
 
 
 	//////////////read pd1 data from disk

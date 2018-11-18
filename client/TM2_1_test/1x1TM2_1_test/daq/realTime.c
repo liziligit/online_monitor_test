@@ -78,7 +78,7 @@ if(pid>0){
 char pedeName[200];
 char polName[200];
 char polRevName[200];
-sprintf(pedeName,"../data/pedeData/pede_%d",pedeId);
+sprintf(pedeName,"../data/pedeData/xpede_%d",pedeId);
 sprintf(polName,"../data/tauData/polNPar_%d.txt",polNId);
 sprintf(polRevName,"../data/tauData/polNParRev_%d.txt",polNId);
 

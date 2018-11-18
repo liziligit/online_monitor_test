@@ -114,8 +114,9 @@ vector<int> idList;
     //sort is not necessary if id is already  in order
     for(int j=0;j<idList.size();j++)
     {
-    cout << idList[j] << endl;
+    cout << idList[j] <<  ' ';
     }
+    cout << "" <<endl;
 /////end of "get beamId in to list"
 //int nCh=pd1.adcCha();
 int nCh=1;
