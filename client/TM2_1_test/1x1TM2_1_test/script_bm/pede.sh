@@ -12,13 +12,13 @@ fi
 #sampleBytes=47185920
 sampleBytes=1718592
 script_BM=../script_bm
-cd ${script_BM}
-pedeDataChar=pede
+#cd ${script_BM}
+pedeDataChar=xpede
 pedeDataPathLocal=../data/pedeData
 
 cd ../daq
 
-pede=../data/pedeData/pede
+pede=../data/pedeData/xpede
 #displayMode=2 ### save pd1 file
 displayMode=3 ### save pd1 file for 0 channel
 

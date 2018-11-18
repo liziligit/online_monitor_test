@@ -24,9 +24,7 @@
 #include <math.h>
 #include <unistd.h> 
 #include <vector>
-//#include <stdlib.h> //for system("pause")
-//#include <stdio.h> //for PUASE
-//#include <stdlib.h>//for PUASE
+
 //int pd1_syncDraw2D(char *infile, int fileId, char *pedefile, int pedeId, double maxPixelSignal, double minPixelSignal){
 using namespace std;
 ///////define the "get the nameId function"
@@ -60,6 +58,8 @@ double minPixelSignal;
 minPixelSignal = atof(argv[6]);
 int ip;
 ip = atoi(argv[7]);
+char *store_file_name;
+store_file_name = argv[8];
 
 int Key_input;
 char str[30];
@@ -71,9 +71,9 @@ char pedefn[100];
 char beamfn[100];
 
 //sprintf(infn,"%s_%d.pd1",infile, fileId);
-sprintf(pedefn,"%s_%d", pedefile, pedeId);
-strcpy(beamfn, "../data/runData/");
-//sprintf(beamfn,"../data/runData/", store_file_name);
+sprintf(pedefn,"%s_%d.txt", pedefile, pedeId);
+//strcpy(beamfn, "../data/runData/");
+sprintf(beamfn,"../data/runData/%s/", store_file_name);
 //pd1.read(infn);
 //pede.setup(pedefn);
 
@@ -86,7 +86,7 @@ struct dirent * ptr;
 dir = opendir(beamfn); //打开一个目录
 
 cout << pedefn << endl;
-cout << beamfn << endl;
+cout << beamfn << "xbeam_*.pd1"<<endl;
 
     while((ptr = readdir(dir)) != NULL) //循环读取目录数据
     {
@@ -101,7 +101,7 @@ vector<int> idList;
     for(int j=0;j<name_id.size();j++)
   {
     //cout << name_id[j] << endl;
-    int eId=extractId(name_id[j],"beam_",".pd1");
+    int eId=extractId(name_id[j],"xbeam_",".pd1");
 
     if(eId>=0)
     {
@@ -142,7 +142,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 			//cout<<i<<endl;
 			pd1.getFrame(i, 0); // 输入帧数和adc通道数，不加adc通道数这个参数，会获取所有通道的数据
 			//sprintf(str, "frame %d", i);
-			sprintf(str, "beam_%d.pd1 frame %d",fileId,i);
+			sprintf(str, "xbeam_%d.pd1 frame %d",fileId,i);
 			pede.subPede(pd1.frameDat, 0);  //subtract pede 不加第二个参数，会操作所有通道的数据
 			pt.h2[0]->SetTitle(str);
 			//pt.loadData2Hist2D(pd1.frameDat+k*72*72,nCh-k-1);
@@ -205,7 +205,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 					//for saving frame png	
 					else if(Key_input == 5000)
 					{
-						pt.c->SaveAs(TString::Format("../data/runData/cut_%d_%d.png",fileId,i));
+						pt.c->SaveAs(TString::Format("../data/runData/%s/cut_%s_%d_%d.png", store_file_name,store_file_name,fileId,i));
 						goto wait_opera;
 					}
 					//end for saving frame png	
@@ -265,7 +265,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 						//for saving frame png	
 						else if(Key_input == 5000)
 						{
-						pt.c->SaveAs(TString::Format("../data/runData/cut_%d_%d.png",fileId,i));
+						pt.c->SaveAs(TString::Format("../data/runData/%s/cut_%s_%d_%d.png", store_file_name,store_file_name,fileId,i));
 						goto wait_opera;
 						}
 						//end for saving frame png	
