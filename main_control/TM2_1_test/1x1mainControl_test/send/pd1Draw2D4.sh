@@ -2,6 +2,7 @@ fileId=$1
 pedeId=$2
 lowLimitPixel=$3 # minimum signal value of pixel 
 upLimitPixel=$4  # maximum signal value of pixel 
+store_file_name=$5
 if [ "$1" = "" ]
 then
   echo Data number is empty
@@ -21,9 +22,15 @@ then
   exit
 fi
 
+if [ "$5" = "" ]
+then
+  echo store_file_name is empty
+  exit
+fi
+
 set Id=0
 #for((Id=1;Id<=4;Id++))
 for((Id=1;Id<=2;Id++))
 do
-	 ./pd1SyncDraw2D_send.sh ${Id} ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel}
+	 ./pd1SyncDraw2D_send.sh ${Id} ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel} ${store_file_name}
 done

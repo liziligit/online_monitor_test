@@ -3,7 +3,7 @@ fileId=$2
 pedeId=$3
 lowLimitPixel=$4 # minimum signal value of pixel 
 upLimitPixel=$5  # maximum signal value of pixel 
-
+store_file_name=$6
 
 if [ "$1" = "" ]
 then
@@ -28,5 +28,11 @@ then
   exit
 fi
 
-echo ./send -IP ${ip} -cmd "./pd1SyncDraw2D.sh ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel} ${ip}"
-./send -IP ${ip} -cmd "./pd1SyncDraw2D.sh ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel} ${ip}"
+if [ "$6" = "" ]
+then
+  echo store_file_name is empty
+  exit
+fi
+
+echo ./send -IP ${ip} -cmd "./pd1SyncDraw2D.sh ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel} ${ip} ${store_file_name}"
+./send -IP ${ip} -cmd "./pd1SyncDraw2D.sh ${fileId} ${pedeId} ${lowLimitPixel} ${upLimitPixel} ${ip} ${store_file_name}"
