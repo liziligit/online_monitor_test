@@ -99,7 +99,7 @@
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TTimer.h
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TSysEvtHandler.h
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TTime.h
-./../topmetal1X8/pd1_drawPixel_cpp.so: /home/addy4/TM4_8/TM1_8/script_bm/./../topmetal1X8/rootlib.h
+./../topmetal1X8/pd1_drawPixel_cpp.so: /home/addy1/1x1TM2_1_test/script_bm/./../topmetal1X8/rootlib.h
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TGraphErrors.h
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TVirtualFFT.h
 ./../topmetal1X8/pd1_drawPixel_cpp.so: /opt/root/include/TRandom.h
