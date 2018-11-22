@@ -165,14 +165,14 @@ change_pd1: for(int j=0;j<idList.size();j++)
 				// if(ch==38) break;				
 				if(ch==32)
 				{
-					wait_opera: cout << "请输入正负1000内的数字前后跳帧,-1000跳到上个pd1,1000跳到下个pd1,5000截图,0继续" << endl;
+					wait_opera: cout << "请输入正负10000内的数字前后跳帧,-10000跳到上个pd1,10000跳到下个pd1,50000截图,0继续" << endl;
 					scanf("%d", &Key_input);
 					if( Key_input == 0 )
 					{
 						cout << "You input zero, continue!" << endl;
 					}
 					//for change files
-					else if(Key_input == -1000)//should big than pd1.nFrame()
+					else if(Key_input == -10000)//should big than pd1.nFrame()
 					{
 						if(j==0)//list number can not less than 0
 							{
@@ -186,7 +186,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 							}
 						goto change_pd1;
 					}
-					else if(Key_input == 1000)
+					else if(Key_input == 10000)
 					{
 						if(j==idList.size() - 1)//list number can not bigger than idList.size()
 							{
@@ -204,7 +204,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 					}
 					//end of change files
 					//for saving frame png	
-					else if(Key_input == 5000)
+					else if(Key_input == 50000)
 					{
 						pt.c->SaveAs(TString::Format("../data/runData/%s/cut_%s_%d_%d.png", store_file_name,store_file_name,fileId,i));
 						goto wait_opera;
@@ -232,7 +232,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 						if( Key_input == 0 )
 						cout << "You input zero, continue!" << endl;
 						//for change files
-						else if(Key_input == -1000)
+						else if(Key_input == -10000)
 						{
 						if(j==0)//list number can not less than 0
 							{
@@ -246,7 +246,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 							}
 						goto change_pd1;
 						}
-						else if(Key_input == 1000)
+						else if(Key_input == 10000)
 						{
 						if(j==idList.size() - 1)//list number can not bigger than idList.size()
 							{
@@ -264,7 +264,7 @@ change_pd1: for(int j=0;j<idList.size();j++)
 						}
 						//end of change files
 						//for saving frame png	
-						else if(Key_input == 5000)
+						else if(Key_input == 50000)
 						{
 						pt.c->SaveAs(TString::Format("../data/runData/%s/cut_%s_%d_%d.png", store_file_name,store_file_name,fileId,i));
 						goto wait_opera;
