@@ -24,7 +24,8 @@ then
 fi
 
 ./startTm2-ClearFifo_send.sh
-sleep 1
+sleep 3
+#sleep 1 is too short
 set Id=0
 #for((Id=1;Id<=4;Id++))
 for((Id=1;Id<=2;Id++))
