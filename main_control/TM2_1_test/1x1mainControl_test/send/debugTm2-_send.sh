@@ -7,3 +7,4 @@ fi
 
 echo ./send -IP ${ip} -cmd "./debugTm2-.sh"
 ./send -IP ${ip} -cmd "./debugTm2-.sh"
+

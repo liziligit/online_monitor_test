@@ -2,11 +2,15 @@
 gnome-terminal --window --tab -e 'bash -c "ssh -Y addy1@192.168.3.201;exec bash"' --tab -e 'bash -c "ssh -Y addy2@192.168.3.202;exec bash"' --tab -e 'bash -c "ssh -Y addy1@192.168.3.201;exec bash"' --tab -e 'bash -c "ssh -Y addy2@192.168.3.202;exec bash"'
 #open four windows
 gnome-terminal --window -e --tab -e 'bash -c "ssh -Y addy1@192.168.3.201;exec bash"' --tab -e 'bash -c "ssh -Y addy2@192.168.3.202;exec bash"' --tab -e 'bash -c "ssh -Y addy1@192.168.3.201;exec bash"' --tab -e 'bash -c "ssh -Y addy2@192.168.3.202;exec bash"'
-#./startTm2-ClearFifo.sh
-#./runData.sh 1 6 s test
-#./pd1SyncDraw2D.sh 1 1 -10 10 1 test
-#./pd1SyncDraw2D.sh 1 1 -10 10 2 test
 
+:'
+./initiTm2-.sh 0.78 0.62
+./startTm2-ClearFifo.sh
+./debugTm2-.sh
+./runData.sh 1 6 s test
+./pd1SyncDraw2D.sh 1 1 -10 10 1 test
+./pd1SyncDraw2D.sh 1 1 -10 10 2 test
+'
 
 sleep 1
 xdotool type  "abc123"
